@@ -2,7 +2,6 @@ name: CI
 
 permissions:
   contents: read
-  security-events: write
 
 on:
   push:
@@ -42,6 +41,20 @@ jobs:
 
       - name: E2E Tests
         run: npm run e2e
+
+  # Fallow runs in its own job on a plain runner (no container). The action is
+  # a composite action that references files via ${{ github.action_path }}; in a
+  # container job that host path isn't visible inside the container, which makes
+  # its install step fail with exit 127. A normal runner avoids that, and Fallow
+  # (static analysis) has no need for the Playwright browser image anyway.
+  fallow:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - uses: actions/checkout@v6
 
       - name: Fallow analysis
         uses: fallow-rs/fallow@v2.89.0
