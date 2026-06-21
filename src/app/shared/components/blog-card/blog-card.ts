@@ -1,12 +1,13 @@
 import { Component, input, output } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Blog } from '../../blog';
 
 @Component({
   selector: 'app-blog-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatCardModule, MatIconModule, RouterLink],
   templateUrl: './blog-card.html',
   styleUrl: './blog-card.scss',
 })

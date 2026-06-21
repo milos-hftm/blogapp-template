@@ -6,4 +6,13 @@ export const routes: Routes = [
     path: '',
     component: BlogOverviewPage,
   },
+  {
+    path: 'blog/:id',
+    loadComponent: () =>
+      import('./feature/blog-detail-page/blog-detail-page').then((m) => m.BlogDetailPage),
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./feature/about-page/about-page').then((m) => m.AboutPage),
+  },
 ];
