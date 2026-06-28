@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="blog-card">
   @if (model().headerImageUrl) {
     <img mat-card-image [src]="model().headerImageUrl" [alt]="model().title" />
   }
@@ -13,13 +13,18 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-icon-button type="button" (click)="onLike()">
+    <button
+      mat-icon-button
+      type="button"
+      (click)="onLike()"
+      [attr.aria-label]="model().likedByMe ? 'Unlike' : 'Like'"
+    >
       <mat-icon>
         {{ model().likedByMe ? 'favorite' : 'favorite_border' }}
       </mat-icon>
     </button>
 
-    <span>{{ model().likes }}</span>
+    <span class="likes">{{ model().likes }}</span>
 
     <span class="spacer"></span>
 
