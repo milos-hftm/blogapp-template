@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
-import blogData from '../../data/blogs.json';
+import { Component, inject, signal } from '@angular/core';
 import { Blog } from '../../shared/blog';
+import { BlogService } from '../../shared/blog.service';
 import { BlogCard } from '../../shared/components/blog-card/blog-card';
 
 @Component({
@@ -10,7 +10,9 @@ import { BlogCard } from '../../shared/components/blog-card/blog-card';
   styleUrl: './blog-overview-page.scss',
 })
 export class BlogOverviewPage {
-  blogs = signal<Blog[]>(blogData as Blog[]);
+  private readonly blogService = inject(BlogService);
+
+  blogs = signal<Blog[]>(this.blogService.getAll());
 
   toggleLike(blogId: number): void {
     this.blogs.update((blogs) =>

@@ -20,5 +20,9 @@
     </button>
 
     <span>{{ model().likes }}</span>
+
+    <span class="spacer"></span>
+
+    <a mat-button [routerLink]="['/blog', model().id]">Details</a>
   </mat-card-actions>
 </mat-card>
