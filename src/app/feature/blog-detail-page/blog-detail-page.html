@@ -1,5 +1,5 @@
 @if (blog(); as blog) {
-  <mat-card>
+  <mat-card class="detail-card">
     @if (blog.headerImageUrl) {
       <img mat-card-image [src]="blog.headerImageUrl" [alt]="blog.title" />
     }
@@ -18,6 +18,8 @@
     </mat-card-actions>
   </mat-card>
 } @else {
-  <p>Blog-Post nicht gefunden.</p>
-  <a mat-button routerLink="/">Zurueck</a>
+  <section class="not-found">
+    <p>Blog-Post nicht gefunden.</p>
+    <a mat-button routerLink="/">Zurueck</a>
+  </section>
 }

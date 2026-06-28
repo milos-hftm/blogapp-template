@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { Blog } from '../../shared/blog';
-import { BlogService } from '../../shared/blog.service';
-import { BlogCard } from '../../shared/components/blog-card/blog-card';
+import { Blog } from '../blog/blog';
+import { BlogService } from '../blog/blog.service';
+import { BlogCard } from '../blog/components/blog-card/blog-card';
 
 @Component({
   selector: 'app-blog-overview-page',

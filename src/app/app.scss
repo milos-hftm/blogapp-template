@@ -1,13 +1,62 @@
+@use '../styles/variables' as vars;
+@use '../styles/mixins' as mixins;
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: vars.$spacing-md;
+  padding: 0 vars.$spacing-lg;
+  background: linear-gradient(135deg, var(--mat-sys-primary), var(--mat-sys-tertiary));
+  color: var(--mat-sys-on-primary);
+
+  a,
+  button {
+    color: inherit;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacing-sm;
+  font-weight: 700;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
-.content {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+nav {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacing-xs;
 }
 
 .active-link {
+  background: color-mix(in srgb, var(--mat-sys-on-primary) 18%, transparent);
   font-weight: 700;
+}
+
+.theme-toggle {
+  margin-left: vars.$spacing-sm;
+}
+
+.content {
+  @include mixins.page-shell;
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    gap: vars.$spacing-sm;
+    padding: 0 vars.$spacing-sm;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .content {
+    padding: vars.$spacing-lg vars.$spacing-md;
+  }
 }

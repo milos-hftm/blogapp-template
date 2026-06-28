@@ -1,13 +1,16 @@
-@use '../../../styles/variables' as vars;
+@use '../../../../../styles/variables' as vars;
+@use '../../../../../styles/mixins' as mixins;
 
-.detail-card {
+.blog-card {
+  @include mixins.card-hover;
+
+  height: 100%;
   overflow: hidden;
-  border-radius: vars.$card-radius;
   background: var(--mat-sys-surface-container-low);
   color: var(--mat-sys-on-surface);
 
   img {
-    max-height: 360px;
+    height: 180px;
     object-fit: cover;
   }
 
@@ -16,18 +19,21 @@
 
     p {
       color: var(--mat-sys-on-surface-variant);
-      line-height: 1.6;
+      line-height: 1.5;
     }
   }
 
   mat-card-actions {
+    gap: vars.$spacing-sm;
     padding: vars.$spacing-sm vars.$spacing-md vars.$spacing-md;
   }
 }
 
-.not-found {
-  padding: vars.$spacing-xl;
-  border-radius: vars.$card-radius;
-  background: var(--mat-sys-surface-container-low);
-  color: var(--mat-sys-on-surface);
+.likes {
+  color: var(--mat-sys-primary);
+  font-weight: 700;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

@@ -1,0 +1,17 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mixins;
+
+.blog-grid {
+  @include mixins.responsive-grid;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: vars.$spacing-xl;
+  border: 1px dashed var(--mat-sys-outline-variant);
+  border-radius: vars.$card-radius;
+  background: var(--mat-sys-surface-container-low);
+  color: var(--mat-sys-on-surface-variant);
+  text-align: center;
+}
