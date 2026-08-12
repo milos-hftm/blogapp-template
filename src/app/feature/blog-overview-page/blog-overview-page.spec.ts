@@ -33,6 +33,8 @@ describe('BlogOverviewPage', () => {
   };
 
   beforeEach(async () => {
+    localStorage.clear();
+
     await TestBed.configureTestingModule({
       imports: [BlogOverviewPage],
       providers: [provideRouter([]), { provide: BlogService, useValue: blogService }],
@@ -42,6 +44,7 @@ describe('BlogOverviewPage', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -49,6 +52,7 @@ describe('BlogOverviewPage', () => {
   });
 
   it('should load blogs', () => {
-    expect(component.blogs()).toHaveLength(1);
+    expect(fixture.nativeElement.textContent).toContain('Test Blog');
+    expect(fixture.nativeElement.textContent).toContain('1 Blog-Posts');
   });
 });

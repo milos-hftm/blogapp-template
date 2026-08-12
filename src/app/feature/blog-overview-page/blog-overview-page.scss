@@ -24,6 +24,23 @@
   grid-column: 1 / -1;
 }
 
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$spacing-md;
+  margin-bottom: vars.$spacing-lg;
+}
+
+.filter-bar mat-form-field {
+  width: min(100%, 320px);
+}
+
+.blog-count {
+  color: var(--mat-sys-on-surface-variant);
+  font-weight: 500;
+}
+
 .editor-actions {
   display: flex;
   gap: vars.$spacing-sm;
@@ -66,5 +83,10 @@
 
   .editor-form {
     grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
