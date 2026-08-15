@@ -23,7 +23,7 @@
     </mat-form-field>
 
     <div class="editor-actions">
-      <button mat-flat-button type="submit" [disabled]="loading() || !canSave()">
+      <button mat-flat-button type="submit" [disabled]="state.loading() || !canSave()">
         {{ editingBlogId() === null ? 'Erstellen' : 'Speichern' }}
       </button>
 
@@ -34,11 +34,31 @@
   </form>
 </section>
 
-@if (error()) {
-  <p class="error-state">{{ error() }}</p>
+<section class="filter-bar">
+  <mat-form-field appearance="outline">
+    <mat-label>Autor filtern</mat-label>
+    <select
+      matNativeControl
+      name="selectedAuthor"
+      [ngModel]="state.selectedAuthor()"
+      (ngModelChange)="state.setAuthor($event)"
+    >
+      <option value="all">Alle Autoren</option>
+
+      @for (author of state.authors(); track author) {
+        <option [value]="author">{{ author }}</option>
+      }
+    </select>
+  </mat-form-field>
+
+  <span class="blog-count">{{ state.blogCount() }} Blog-Posts</span>
+</section>
+
+@if (state.error()) {
+  <p class="error-state">{{ state.error() }}</p>
 }
 
-@if (loading()) {
+@if (state.loading()) {
   <section class="loading-state">
     <mat-spinner diameter="32" />
     <span>Laden...</span>
@@ -46,7 +66,7 @@
 }
 
 <section class="blog-grid">
-  @for (blog of blogs(); track blog.id) {
+  @for (blog of state.filteredBlogs(); track blog.id) {
     <app-blog-card
       [model]="blog"
       (liked)="toggleLike($event)"
@@ -54,8 +74,8 @@
       (deleted)="deleteBlog($event)"
     />
   } @empty {
-    @if (!loading()) {
-      <p class="empty-state">Keine Blog-Posts vorhanden.</p>
+    @if (!state.loading()) {
+      <p class="empty-state">Keine passenden Blog-Posts vorhanden.</p>
     }
   }
 </section>
