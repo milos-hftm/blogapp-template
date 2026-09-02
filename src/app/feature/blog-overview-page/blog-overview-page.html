@@ -1,38 +1,40 @@
-<section class="editor">
-  <h1>{{ editingBlogId() === null ? 'Blog erstellen' : 'Blog bearbeiten' }}</h1>
+@if (canManageBlogs()) {
+  <section class="editor">
+    <h1>{{ editingBlogId() === null ? 'Blog erstellen' : 'Blog bearbeiten' }}</h1>
 
-  <form class="editor-form" (ngSubmit)="saveBlog()">
-    <mat-form-field appearance="outline">
-      <mat-label>Titel</mat-label>
-      <input matInput name="title" [(ngModel)]="title" />
-    </mat-form-field>
+    <form class="editor-form" (ngSubmit)="saveBlog()">
+      <mat-form-field appearance="outline">
+        <mat-label>Titel</mat-label>
+        <input matInput name="title" [(ngModel)]="title" />
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Autor</mat-label>
-      <input matInput name="author" [(ngModel)]="author" />
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Autor</mat-label>
+        <input matInput name="author" [(ngModel)]="author" />
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Bild-URL</mat-label>
-      <input matInput name="headerImageUrl" [(ngModel)]="headerImageUrl" />
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Bild-URL</mat-label>
+        <input matInput name="headerImageUrl" [(ngModel)]="headerImageUrl" />
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Inhalt</mat-label>
-      <textarea matInput name="content" rows="4" [(ngModel)]="content"></textarea>
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Inhalt</mat-label>
+        <textarea matInput name="content" rows="4" [(ngModel)]="content"></textarea>
+      </mat-form-field>
 
-    <div class="editor-actions">
-      <button mat-flat-button type="submit" [disabled]="state.loading() || !canSave()">
-        {{ editingBlogId() === null ? 'Erstellen' : 'Speichern' }}
-      </button>
+      <div class="editor-actions">
+        <button mat-flat-button type="submit" [disabled]="state.loading() || !canSave()">
+          {{ editingBlogId() === null ? 'Erstellen' : 'Speichern' }}
+        </button>
 
-      @if (editingBlogId() !== null) {
-        <button mat-button type="button" (click)="cancelEdit()">Abbrechen</button>
-      }
-    </div>
-  </form>
-</section>
+        @if (editingBlogId() !== null) {
+          <button mat-button type="button" (click)="cancelEdit()">Abbrechen</button>
+        }
+      </div>
+    </form>
+  </section>
+}
 
 <section class="filter-bar">
   <mat-form-field appearance="outline">
@@ -69,6 +71,7 @@
   @for (blog of state.filteredBlogs(); track blog.id) {
     <app-blog-card
       [model]="blog"
+      [canManage]="canManageBlogs()"
       (liked)="toggleLike($event)"
       (edited)="editBlog($event)"
       (deleted)="deleteBlog($event)"

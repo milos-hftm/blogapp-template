@@ -30,12 +30,14 @@
 
     <a mat-button [routerLink]="['/blog', model().id]">Details</a>
 
-    <button mat-icon-button type="button" aria-label="Blog bearbeiten" (click)="onEdit()">
-      <mat-icon>edit</mat-icon>
-    </button>
+    @if (canManage()) {
+      <button mat-icon-button type="button" aria-label="Blog bearbeiten" (click)="onEdit()">
+        <mat-icon>edit</mat-icon>
+      </button>
 
-    <button mat-icon-button type="button" aria-label="Blog loeschen" (click)="onDelete()">
-      <mat-icon>delete</mat-icon>
-    </button>
+      <button mat-icon-button type="button" aria-label="Blog loeschen" (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    }
   </mat-card-actions>
 </mat-card>

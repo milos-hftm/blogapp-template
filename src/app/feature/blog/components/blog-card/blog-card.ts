@@ -13,6 +13,7 @@ import { Blog } from '../../blog';
 })
 export class BlogCard {
   model = input.required<Blog>();
+  canManage = input(false);
 
   liked = output<number>();
   edited = output<Blog>();
