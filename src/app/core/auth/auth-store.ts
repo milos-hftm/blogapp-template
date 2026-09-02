@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
-export interface UserInfo {
+interface UserInfo {
   preferred_username: string;
   email: string;
   name: string;
