@@ -1,0 +1,24 @@
+@use '../../../styles/variables' as vars;
+
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  width: min(100%, 420px);
+  background: var(--mat-sys-surface-container-low);
+}
+
+mat-card-content {
+  min-height: vars.$spacing-xl;
+}
+
+mat-card-actions {
+  padding: 0 vars.$spacing-md vars.$spacing-md;
+}
+
+.error-message {
+  margin: vars.$spacing-md 0 0;
+  color: var(--mat-sys-error);
+}

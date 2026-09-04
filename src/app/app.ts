@@ -1,8 +1,10 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { environment } from '../environments/environment';
+import { AuthStore } from './core/auth/auth-store';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +20,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrl: './app.scss',
 })
 export class App {
+  protected readonly authStore = inject(AuthStore);
+
   private readonly themeStorageKey = 'blog-theme';
 
   protected readonly title = 'HFTM Web Applications (IN353)';
+  protected readonly authEnabled = environment.authEnabled;
   protected readonly isDarkTheme = signal(this.getInitialTheme());
+  protected readonly displayName = computed(
+    () => this.authStore.user()?.preferred_username || this.authStore.user()?.name || '',
+  );
+  protected readonly canCreateBlog = computed(() => this.authStore.roles().includes('user'));
 
   constructor() {
     effect(() => {
@@ -34,6 +43,10 @@ export class App {
 
   protected toggleTheme(): void {
     this.isDarkTheme.update((darkTheme) => !darkTheme);
+  }
+
+  protected logout(): void {
+    void this.authStore.logout();
   }
 
   private getInitialTheme(): boolean {

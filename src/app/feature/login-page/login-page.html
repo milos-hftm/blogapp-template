@@ -1,0 +1,22 @@
+<section class="login-page">
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar aria-hidden="true">lock</mat-icon>
+      <mat-card-title>Anmelden</mat-card-title>
+      <mat-card-subtitle>HFTM Blog</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (errorMessage(); as message) {
+        <p class="error-message">{{ message }}</p>
+      }
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-flat-button type="button" [disabled]="!authEnabled" (click)="signIn()">
+        <mat-icon aria-hidden="true">login</mat-icon>
+        Mit Keycloak anmelden
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

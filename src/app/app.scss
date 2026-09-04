@@ -33,9 +33,21 @@ nav {
   gap: vars.$spacing-xs;
 }
 
+nav a,
+.app-header button {
+  flex-shrink: 0;
+}
+
 .active-link {
   background: color-mix(in srgb, var(--mat-sys-on-primary) 18%, transparent);
   font-weight: 700;
+}
+
+.user-name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .theme-toggle {
@@ -54,6 +66,10 @@ nav {
 
   .brand span {
     display: none;
+  }
+
+  .user-name {
+    max-width: 110px;
   }
 
   .content {

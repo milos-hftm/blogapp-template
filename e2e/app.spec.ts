@@ -4,7 +4,7 @@ test('should display the blog overview page', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.locator('mat-toolbar')).toContainText('HFTM Web Applications');
-  await expect(page.getByRole('heading', { name: /Blog erstellen|Blog bearbeiten/ })).toBeVisible();
+  await expect(page.locator('.blog-count')).toContainText('Blog-Posts');
   await expect(
     page
       .locator('app-blog-card')

@@ -8,6 +8,7 @@
 
 # Node
 /node_modules
+/bff/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -31,6 +32,8 @@ yarn-error.log
 
 # Miscellaneous
 /.angular/cache
+/bff/dist
+/bff/local.settings.json
 .sass-cache/
 /connect.lock
 /coverage
