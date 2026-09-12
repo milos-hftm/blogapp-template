@@ -39,16 +39,14 @@ export class BlogOverviewPage implements OnInit {
   }
 
   async saveBlog(): Promise<void> {
-    if (!this.canManageBlogs() || !this.canSave()) {
+    const editingBlogId = this.editingBlogId();
+
+    if (!this.canManageBlogs() || !this.canSave() || editingBlogId === null) {
       return;
     }
 
     const blog = this.createBlogFromForm();
-    const editingBlogId = this.editingBlogId();
-    const saved =
-      editingBlogId === null
-        ? await this.state.createBlog(blog)
-        : await this.state.updateBlog(String(editingBlogId), blog);
+    const saved = await this.state.updateBlog(String(editingBlogId), blog);
 
     if (saved) {
       this.resetForm();
@@ -89,12 +87,12 @@ export class BlogOverviewPage implements OnInit {
 
   private createBlogFromForm(): Blog {
     const now = new Date().toISOString();
-    const editingBlogId = this.editingBlogId();
+    const editingBlogId = this.editingBlogId() ?? 0;
     const existingBlog = this.state.blogs().find((blog) => blog.id === editingBlogId);
     const content = this.content.trim();
 
     return {
-      id: editingBlogId ?? 0,
+      id: editingBlogId,
       title: this.title.trim(),
       contentPreview: content,
       content,

@@ -16,7 +16,7 @@
       Blog
     </a>
 
-    @if (authEnabled && (!authStore.isAuthenticated() || canCreateBlog())) {
+    @if (!authEnabled || !authStore.isAuthenticated() || canCreateBlog()) {
       <a mat-button routerLink="/add-blog" routerLinkActive="active-link">
         <mat-icon aria-hidden="true">add</mat-icon>
         Neuer Beitrag

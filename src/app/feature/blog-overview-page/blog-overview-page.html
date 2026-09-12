@@ -1,6 +1,6 @@
-@if (canManageBlogs()) {
+@if (canManageBlogs() && editingBlogId() !== null) {
   <section class="editor">
-    <h1>{{ editingBlogId() === null ? 'Blog erstellen' : 'Blog bearbeiten' }}</h1>
+    <h1>Blog bearbeiten</h1>
 
     <form class="editor-form" (ngSubmit)="saveBlog()">
       <mat-form-field appearance="outline">
@@ -25,12 +25,9 @@
 
       <div class="editor-actions">
         <button mat-flat-button type="submit" [disabled]="state.loading() || !canSave()">
-          {{ editingBlogId() === null ? 'Erstellen' : 'Speichern' }}
+          Speichern
         </button>
-
-        @if (editingBlogId() !== null) {
-          <button mat-button type="button" (click)="cancelEdit()">Abbrechen</button>
-        }
+        <button mat-button type="button" (click)="cancelEdit()">Abbrechen</button>
       </div>
     </form>
   </section>

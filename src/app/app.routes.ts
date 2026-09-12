@@ -9,7 +9,8 @@ export const routes: Routes = [
   },
   {
     path: 'add-blog',
-    component: BlogOverviewPage,
+    loadComponent: () =>
+      import('./feature/blog-create/blog-create').then((m) => m.BlogCreateComponent),
     canMatch: [authGuard],
     data: { roles: ['user'] },
   },
