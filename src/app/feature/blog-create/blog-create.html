@@ -1,0 +1,45 @@
+<section class="create-page">
+  <header class="page-title">
+    <h1>Blog erstellen</h1>
+  </header>
+
+  <form class="create-form" (submit)="onSubmit($event)" novalidate>
+    <div class="field">
+      <mat-form-field appearance="outline">
+        <mat-label>Titel</mat-label>
+        <input matInput type="text" [formField]="blogForm.title" />
+      </mat-form-field>
+
+      <app-blog-create-errors [field]="blogForm.title()" />
+    </div>
+
+    <div class="field full-width">
+      <mat-form-field appearance="outline">
+        <mat-label>Inhalt</mat-label>
+        <textarea matInput rows="7" [formField]="blogForm.content"></textarea>
+      </mat-form-field>
+
+      <app-blog-create-errors [field]="blogForm.content()" />
+    </div>
+
+    <div class="field">
+      <mat-form-field appearance="outline">
+        <mat-label>Kategorie</mat-label>
+        <select matNativeControl [formField]="blogForm.category">
+          @for (category of categories; track category.value) {
+            <option [value]="category.value">{{ category.label }}</option>
+          }
+        </select>
+      </mat-form-field>
+
+      <app-blog-create-errors [field]="blogForm.category()" />
+    </div>
+
+    <div class="form-actions full-width">
+      <button mat-flat-button type="submit" [disabled]="blogForm().invalid() || state.loading()">
+        Beitrag erstellen
+      </button>
+      <button mat-button type="button" routerLink="/">Abbrechen</button>
+    </div>
+  </form>
+</section>

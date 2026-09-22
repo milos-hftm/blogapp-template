@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as vars;
+
+.create-page {
+  display: grid;
+  gap: vars.$spacing-lg;
+}
+
+.page-title h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.create-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: vars.$spacing-md;
+  max-width: 860px;
+}
+
+.field {
+  display: grid;
+  gap: vars.$spacing-xs;
+}
+
+.field mat-form-field {
+  width: 100%;
+}
+
+.full-width,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  gap: vars.$spacing-sm;
+}
+
+@media (max-width: 640px) {
+  .create-form {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title h1 {
+    font-size: 1.5rem;
+  }
+}

@@ -8,7 +8,7 @@ export const authGuard: CanMatchFn = async (route, segments: UrlSegment[]) => {
   const router = inject(Router);
 
   if (!environment.authEnabled) {
-    return router.createUrlTree(['/']);
+    return true;
   }
 
   await authStore.ready;
