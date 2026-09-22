@@ -67,13 +67,33 @@
 }
 
 .blog-grid {
-  @include mixins.responsive-grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: vars.$spacing-lg;
+}
+
+.blog-grid app-blog-card {
+  display: block;
+  flex: 1 1 100%;
+  min-width: 0;
 }
 
 .empty-state {
-  grid-column: 1 / -1;
+  flex: 1 1 100%;
   border: 1px dashed var(--mat-sys-outline-variant);
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .blog-grid app-blog-card {
+    flex-basis: calc((100% - vars.$spacing-lg) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-grid app-blog-card {
+    flex-basis: calc((100% - 2 * vars.$spacing-lg) / 3);
+  }
 }
 
 @media (max-width: 640px) {
