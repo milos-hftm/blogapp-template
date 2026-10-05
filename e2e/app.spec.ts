@@ -37,7 +37,7 @@ test.beforeEach(async ({ page }) => {
     });
   });
 
-  await page.route('**/api/entries', async (route) => {
+  await page.route(/\/entries$/, async (route) => {
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
