@@ -33,7 +33,11 @@ export class LoginPage {
       return;
     }
 
-    const returnUrl = encodeURIComponent(this.returnUrl());
+    const returnUrl = encodeURIComponent(this.safeReturnUrl(this.returnUrl()));
     window.location.href = `${environment.bffUrl}/auth/login?returnUrl=${returnUrl}`;
+  }
+
+  private safeReturnUrl(url: string): string {
+    return url.startsWith('/') && !url.startsWith('//') ? url : '/';
   }
 }

@@ -2,15 +2,20 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../environments/environment';
 import { AuthStore } from './core/auth/auth-store';
+import { LayoutService } from './core/layout.service';
 
 @Component({
   selector: 'app-root',
   imports: [
     MatButtonModule,
     MatIconModule,
+    MatListModule,
+    MatSidenavModule,
     MatToolbarModule,
     RouterLink,
     RouterLinkActive,
@@ -21,6 +26,7 @@ import { AuthStore } from './core/auth/auth-store';
 })
 export class App {
   protected readonly authStore = inject(AuthStore);
+  protected readonly layout = inject(LayoutService);
 
   private readonly themeStorageKey = 'blog-theme';
 

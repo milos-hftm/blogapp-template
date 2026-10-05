@@ -1,6 +1,27 @@
 @use '../styles/variables' as vars;
 @use '../styles/mixins' as mixins;
 
+.app-shell {
+  min-height: 100vh;
+  background: var(--mat-sys-background);
+}
+
+.app-sidenav {
+  width: 240px;
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface);
+}
+
+.sidenav-title {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacing-sm;
+  min-height: 64px;
+  padding: 0 vars.$spacing-lg;
+  color: var(--mat-sys-primary);
+  font-weight: 700;
+}
+
 .app-header {
   position: sticky;
   top: 0;
@@ -27,13 +48,13 @@
   flex: 1 1 auto;
 }
 
-nav {
+.main-nav {
   display: flex;
   align-items: center;
   gap: vars.$spacing-xs;
 }
 
-nav a,
+.main-nav a,
 .app-header button {
   flex-shrink: 0;
 }
@@ -41,6 +62,10 @@ nav a,
 .active-link {
   background: color-mix(in srgb, var(--mat-sys-on-primary) 18%, transparent);
   font-weight: 700;
+}
+
+.app-sidenav .active-link {
+  background: color-mix(in srgb, var(--mat-sys-primary) 14%, transparent);
 }
 
 .user-name {
@@ -66,6 +91,10 @@ nav a,
 
   .brand span {
     display: none;
+  }
+
+  .menu-toggle {
+    margin-left: -8px;
   }
 
   .user-name {
