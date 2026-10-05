@@ -37,4 +37,20 @@ describe('BlogCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the blog title', () => {
+    expect(fixture.nativeElement.textContent).toContain('Test Blog');
+  });
+
+  it('should emit the blog id when like is clicked', () => {
+    const liked = vi.fn();
+    component.liked.subscribe(liked);
+
+    const likeButton = fixture.nativeElement.querySelector(
+      'button[aria-label="Like"]',
+    ) as HTMLButtonElement;
+    likeButton.click();
+
+    expect(liked).toHaveBeenCalledWith(1);
+  });
 });
